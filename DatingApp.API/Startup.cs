@@ -63,6 +63,7 @@ namespace DatingApp.API
            app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
            app.UseAuthentication();
            app.UseMvc();
+        
         }
     }
 }

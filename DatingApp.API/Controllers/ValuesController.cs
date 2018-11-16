@@ -20,29 +20,30 @@ namespace DatingApp.API.Controllers
         {
             _context = context;
 
-        
-        
+
+
         }
 
 
         // GET api/values
+        [AllowAnonymous]
         [HttpGet]
-        public async  Task<IActionResult> GetValues()
+        public async Task<IActionResult> GetValues()
         {
 
             var values = await _context.Values.ToListAsync();
-        
-        return Ok(values);
+
+            return Ok(values);
 
         }
-        
+
         [AllowAnonymous]
         [Authorize]
         // GET api/values/5
         [HttpGet("{id}")]
-        public  async Task<IActionResult> GetValues(int id)
+        public async Task<IActionResult> GetValues(int id)
         {
-            var values = await _context.Values.FirstOrDefaultAsync(x=> x.id == id);
+            var values = await _context.Values.FirstOrDefaultAsync(x => x.id == id);
 
             return Ok(values);
         }
