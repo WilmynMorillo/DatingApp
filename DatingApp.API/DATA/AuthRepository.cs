@@ -51,14 +51,14 @@ namespace DatingApp.API.DATA
 
         public async Task<User> Register(User user, string password)
         {
-            
+
             byte[] passwordHash, passwordSalt;
             CreatePasswordHash(password, out passwordHash, out passwordSalt);
 
-            
+
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
-            
+
 
             await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();
@@ -66,7 +66,7 @@ namespace DatingApp.API.DATA
             return (user);
         }
 
-        private void CreatePasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
+        private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
 
             using (var hmac = new System.Security.Cryptography.HMACSHA512())
@@ -84,6 +84,11 @@ namespace DatingApp.API.DATA
                 return true;
 
             return false;
+        }
+
+        Task<bool> IAuthRepository.UserExists(string username)
+        {
+            throw new NotImplementedException();
         }
     }
 }
