@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { BsDropdownModule, TabsModule } from 'ngx-bootstrap';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgxGalleryModule} from 'ngx-gallery';
+import { from } from 'rxjs';
 
 
 import { AppComponent } from './app.component';
@@ -25,7 +26,9 @@ import { UserService } from './_services/user.service';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { Memberdetailresolver } from './_resolver/member-detail.resolver';
-import { from } from 'rxjs';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { MemberEditResolver } from './_resolver/member-edit.resolver';
+import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -42,7 +45,8 @@ export function tokenGetter() {
     ListsComponent,
     MessagesComponent,
     MemberCardComponent,
-    MemberDetailComponent
+    MemberDetailComponent,
+    MemberEditComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +71,9 @@ export function tokenGetter() {
     AuthGuard,
     UserService,
     Memberdetailresolver,
-    MemberListComponent
+    MemberListComponent,
+    MemberEditResolver,
+    PreventUnsavedChanges
   ],
   bootstrap: [AppComponent]
 })
