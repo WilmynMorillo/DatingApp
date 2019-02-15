@@ -42,5 +42,7 @@ updateUser() {
   });
 
 }
-
+updateMainPhoto(photoUrl) {
+this.user.photoUrl = photoUrl;
+}
 }
