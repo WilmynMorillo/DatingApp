@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace DatingApp.API.Dtos
@@ -34,9 +35,9 @@ namespace DatingApp.API.Dtos
        
         public UserForRegisterDto()
         {
-            created = DateTime.now;
+            Created = DateTime.Now;
 
-            LastActive = DateTime.now;
+            LastActive = DateTime.Now;
         }
 
     
